@@ -4,6 +4,23 @@ import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Ic
 import axios from 'axios';
 
 export default class PostsViewer extends Component {
+  state = {
+    posts: [],
+    index: 1
+  }
+
+  componentDidMount(){
+    axios.get(`https://jsonplaceholder.typicode.com/posts`)
+          .then(response => {
+
+              this.setState({
+                posts: response.data
+              })
+          })
+          .catch(function (error) {
+              console.log(error);
+          });
+  }
 
   render() {
     return (
