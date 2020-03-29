@@ -22,6 +22,24 @@ export default class PostsViewer extends Component {
           });
   }
 
+  handlePrevious = () => {
+
+    let index = this.state.index === 0 ? this.state.posts.length-1 : this.state.index-1;
+
+    this.setState({
+      index
+    })
+  }
+
+  handleNext = () => {
+
+      let index = this.state.index === this.state.posts.length-1 ? 0 : this.state.index+1;
+
+      this.setState({
+        index
+      })
+  }
+
   render() {
     if(this.state.posts.length < 1){
       return <Text>Loading...</Text>;
@@ -47,6 +65,7 @@ export default class PostsViewer extends Component {
           <CardItem>
             <Left>
               <Button 
+                onPress={this.handlePrevious}
                 primary>
                   <Text> Previous </Text>
               </Button>
@@ -56,6 +75,7 @@ export default class PostsViewer extends Component {
             </Body>
             <Right>
             <Button 
+                onPress={this.handleNext}
                 primary>
                   <Text> Next </Text>
               </Button>
