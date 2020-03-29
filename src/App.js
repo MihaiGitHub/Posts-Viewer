@@ -23,8 +23,47 @@ export default class PostsViewer extends Component {
   }
 
   render() {
+    if(this.state.posts.length < 1){
+      return <Text>Loading...</Text>;
+    }
+
     return (
-      <Text>Posts Viewer</Text>
+      <Container>
+      <Header />
+      <Content>
+        <Card>
+        <CardItem>
+            <Left>
+              <Thumbnail source={{uri: 'Image URL'}} />
+              <Body>
+                <Text>{this.state.posts[this.state.index].title}</Text>
+                <Text note>{this.state.posts[this.state.index].id}</Text>
+              </Body>
+            </Left>
+          </CardItem>
+          <CardItem cardBody>
+            <Text>{this.state.posts[this.state.index].body}</Text>
+          </CardItem>
+          <CardItem>
+            <Left>
+              <Button 
+                primary>
+                  <Text> Previous </Text>
+              </Button>
+            </Left>
+            <Body>
+              
+            </Body>
+            <Right>
+            <Button 
+                primary>
+                  <Text> Next </Text>
+              </Button>
+            </Right>
+          </CardItem>
+        </Card>
+      </Content>
+    </Container>
     );
   }
 }
